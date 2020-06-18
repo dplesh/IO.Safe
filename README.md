@@ -1,0 +1,2 @@
+# IO.Safe
+Safe IO 
