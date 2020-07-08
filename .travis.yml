@@ -1,0 +1,10 @@
+language: csharp
+solution: IO.Safe.sln
+mono: none
+dotnet: 2.1
+install:
+    - nuget restore IO.Safe.sln
+    - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+script:
+    - dotnet build -c Release IO.Safe.Sln
+    - dotnet ./testrunner/xunit.runners.1.9.2/tools/xunit.console.clr4.exe ./IO.Safe.Tests/bin/Release/netcoreapp3.1/IO.Safe.Tests.dll
