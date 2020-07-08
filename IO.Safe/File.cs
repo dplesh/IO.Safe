@@ -6,6 +6,8 @@ namespace IO.Safe
     public class File
     {
 
+        #region Move
+
         public static void Move(string source, string destination, bool overwrite = true)
         {
             InternalMove(source, destination, overwrite);
@@ -13,19 +15,19 @@ namespace IO.Safe
 
         public static void MoveToDirectory(string source, string destination, bool overwrite = true)
         {
-            string fileName = Path.GetFileName(source);
+            string fileName = System.IO.Path.GetFileName(source);
             if (fileName == null)
             {
                 throw new ArgumentException("Source path is an invalid path.", nameof(source));
             }
 
-            string destinationFile = Path.Combine(destination, fileName);
+            string destinationFile = System.IO.Path.Combine(destination, fileName);
             InternalMove(source, destinationFile, overwrite);
         }
 
         private static void InternalMove(string source, string destination, bool overwrite)
         {
-            string directoryName = Path.GetDirectoryName(destination);
+            string directoryName = System.IO.Path.GetDirectoryName(destination);
             if (directoryName == null)
             {
                 throw new ArgumentException("Destination path is an invalid path.", nameof(destination));
@@ -38,5 +40,9 @@ namespace IO.Safe
 
             System.IO.File.Move(source, destination);
         }
+
+        #endregion
+
+
     }
 }

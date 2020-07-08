@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using Xunit;
-using IO.Safe;
+using Path = System.IO.Path;
 
 namespace IO.Safe.Tests
 {
@@ -10,8 +10,8 @@ namespace IO.Safe.Tests
         [Fact]
         public void Move_MovesFileToDestination()
         {
-            string sourceFile = Path.GetTempFileName();
-            string destination = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+            string sourceFile = System.IO.Path.GetTempFileName();
+            string destination = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString());
             try
             {
                 File.Move(sourceFile, destination);
@@ -27,9 +27,9 @@ namespace IO.Safe.Tests
         [Fact]
         public void MoveToDirectory_MovesFileToDirectory()
         {
-            string sourceFile = Path.GetTempFileName();
-            string destinationDirectory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            string destinationFile = Path.Combine(destinationDirectory, Path.GetFileName(sourceFile));
+            string sourceFile = System.IO.Path.GetTempFileName();
+            string destinationDirectory = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString());
+            string destinationFile = System.IO.Path.Combine(destinationDirectory, System.IO.Path.GetFileName(sourceFile));
             try
             {
                 File.MoveToDirectory(sourceFile, destinationDirectory);

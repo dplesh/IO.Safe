@@ -15,13 +15,12 @@ namespace IO.Safe.Watcher.Tests
         [Fact]
         public async void StartPolling_RaisesEventWithFiles()
         {
-            string pollingDirectory = Path.GetTempPath() + Guid.NewGuid();
+            string pollingDirectory = Path.GetTempFolder();
             int fileCount = 10;
-            Directory.CreateDirectory(pollingDirectory);
 
             PollingFileSystemWatcher watcher = new PollingFileSystemWatcher(pollingDirectory, 1000, true);
             watcher.Start();
-            string fileSourcePath = Path.GetTempFileName();
+            string fileSourcePath = System.IO.Path.GetTempFileName();
             await Assert.RaisesAsync<ReadyFileEventArgs>(handler => watcher.OnReadyFile += handler,
                 handler => watcher.OnReadyFile -= handler, () =>
                 {
