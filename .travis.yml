@@ -1,6 +1,6 @@
 language: csharp
 solution: IO.Safe.sln
-mono: none
+mono: latest
 dotnet: 2.1
 install:
     - nuget restore IO.Safe.sln
